@@ -6,11 +6,7 @@ export class TodoEntity {
   private _createdAt?: string;
   private _updatedAt?: string;
 
-  public constructor(
-    title: string,
-    content: string,
-    isDone: boolean,
-  ) {
+  public constructor(title: string, content: string, isDone: boolean) {
     this._title = title;
     this._content = content;
     this._isDone = isDone;

@@ -4,11 +4,7 @@ import { TodoRepository } from './todo-repository';
 export class TodoRepositoryImpl extends TodoRepository {
   public async findAll(): Promise<TodoEntity[]> {
     // TODO: DBから取得
-    const todo = new TodoEntity(
-      'title',
-      'content',
-      false,
-    );
+    const todo = new TodoEntity('title', 'content', false);
     todo.id = 1;
     todo.createdAt = new Date().toISOString();
     todo.updatedAt = new Date().toISOString();
@@ -25,11 +21,7 @@ export class TodoRepositoryImpl extends TodoRepository {
 
   public async findOneById(id: number): Promise<TodoEntity> {
     // TODO: DBから取得
-    const todo = new TodoEntity(
-      'title',
-      'content',
-      false,
-    );
+    const todo = new TodoEntity('title', 'content', false);
     todo.id = id;
     todo.createdAt = new Date().toISOString();
     todo.updatedAt = new Date().toISOString();
@@ -46,11 +38,7 @@ export class TodoRepositoryImpl extends TodoRepository {
 
   public async delete(id: number): Promise<TodoEntity> {
     // TODO: DBで削除
-    const todo = new TodoEntity(
-      'title',
-      'content',
-      false,
-    );
+    const todo = new TodoEntity('title', 'content', false);
     todo.id = id;
     todo.createdAt = new Date().toISOString();
     todo.updatedAt = new Date().toISOString();

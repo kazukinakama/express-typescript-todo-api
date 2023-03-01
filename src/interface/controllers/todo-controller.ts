@@ -1,5 +1,5 @@
-import { TodoUsecase } from "../../application/usecases/todo-usecase";
-import { TodoEntity } from "../../domain/entities/todo-entity";
+import { TodoUsecase } from '../../application/usecases/todo-usecase';
+import { TodoEntity } from '../../domain/entities/todo-entity';
 
 type TodoRequest = {
   title: string;
@@ -35,7 +35,10 @@ export class TodoController {
     return this.entityToItem(result);
   }
 
-  public async update(id: number, requestBody: TodoRequest): Promise<TodoResponse> {
+  public async update(
+    id: number,
+    requestBody: TodoRequest
+  ): Promise<TodoResponse> {
     const todo = this.fromRequest(requestBody);
     const result = await this.todoUsecase.update(id, todo);
     return this.entityToItem(result);
@@ -47,11 +50,7 @@ export class TodoController {
   }
 
   private fromRequest(req: TodoRequest): TodoEntity {
-    const entity = new TodoEntity(
-      req.title,
-      req.content,
-      req.isDone,
-    );
+    const entity = new TodoEntity(req.title, req.content, req.isDone);
     return entity;
   }
 
@@ -70,6 +69,6 @@ export class TodoController {
   }
 
   private entityToItems(entities: TodoEntity[]): TodoResponse[] {
-    return entities.map(entity => this.entityToItem(entity));
+    return entities.map((entity) => this.entityToItem(entity));
   }
 }
