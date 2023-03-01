@@ -1,7 +1,7 @@
 {
-  "name": "serverless-typescript-api-sample",
+  "name": "express-typescript-todo-api",
   "version": "1.0.0",
-  "description": "serverless typescript api sample",
+  "description": "express typescript todo api",
   "main": "app.ts",
   "license": "MIT",
   "scripts": {
