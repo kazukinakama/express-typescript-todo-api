@@ -3,6 +3,7 @@ import { Router } from 'express';
 import { TodoUsecase } from '../../application/usecases/todo-usecase';
 import { TodoController } from '../../interface/controllers/todo-controller';
 import { TodoRepositoryImpl } from '../../interface/repositories/todo-repository-impl';
+import { TodoSerializer } from '../../interface/serializers/todo-serializer';
 
 type TodoRequest = {
   title: string;
@@ -14,8 +15,12 @@ export const todoRouter = (): Router => {
   const router = Router();
   const prisma = new PrismaClient();
   const todoRepository = new TodoRepositoryImpl(prisma);
+  const todoSerializer = new TodoSerializer();
   const todoUsecase = new TodoUsecase(todoRepository);
-  const todoController: TodoController = new TodoController(todoUsecase);
+  const todoController: TodoController = new TodoController(
+    todoUsecase,
+    todoSerializer
+  );
 
   router.get('/', async (req, res, next) => {
     try {
