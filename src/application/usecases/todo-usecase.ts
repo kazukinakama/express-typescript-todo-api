@@ -6,7 +6,7 @@ export class TodoUsecase {
 
   public async findAll(): Promise<TodoEntity[]> {
     const data = await this.todoRepository.findAll();
-    const entities = data.map(item => {
+    const entities = data.map((item) => {
       const entity = new TodoEntity({
         id: item.id,
         title: item.title,

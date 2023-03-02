@@ -1,4 +1,4 @@
-import { PrismaClient, Todo } from "@prisma/client";
+import { PrismaClient, Todo } from '@prisma/client';
 import { TodoEntity } from '../../domain/entities/todo-entity';
 import { TodoRepository } from './todo-repository';
 
@@ -28,7 +28,7 @@ export class TodoRepositoryImpl extends TodoRepository {
       where: {
         id: id,
       },
-    })
+    });
     return data;
   }
 
@@ -51,7 +51,7 @@ export class TodoRepositoryImpl extends TodoRepository {
       where: {
         id: id,
       },
-    })
+    });
     return data;
   }
 }

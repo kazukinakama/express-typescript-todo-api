@@ -6,16 +6,14 @@ export class TodoEntity {
   private _createdAt?: Date;
   private _updatedAt?: Date;
 
-  public constructor(
-    params: {
-      id?: number,
-      title: string,
-      content: string,
-      isDone: boolean,
-      createdAt?: Date,
-      updatedAt?: Date,
-    },
-  ) {
+  public constructor(params: {
+    id?: number;
+    title: string;
+    content: string;
+    isDone: boolean;
+    createdAt?: Date;
+    updatedAt?: Date;
+  }) {
     this._id = params.id;
     this._title = params.title;
     this._content = params.content;
