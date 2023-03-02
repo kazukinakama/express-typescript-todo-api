@@ -50,7 +50,11 @@ export class TodoController {
   }
 
   private fromRequest(req: TodoRequest): TodoEntity {
-    const entity = new TodoEntity(req.title, req.content, req.isDone);
+    const entity = new TodoEntity({
+      title: req.title,
+      content: req.content,
+      isDone: req.isDone,
+    });
     return entity;
   }
 
@@ -63,8 +67,8 @@ export class TodoController {
       title: entity.title,
       content: entity.content,
       isDone: entity.isDone,
-      createdAt: entity.createdAt ?? '',
-      updatedAt: entity.updatedAt ?? '',
+      createdAt: entity.createdAt?.toISOString() ?? '',
+      updatedAt: entity.updatedAt?.toISOString() ?? '',
     };
   }
 

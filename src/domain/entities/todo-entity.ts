@@ -3,13 +3,25 @@ export class TodoEntity {
   private _title: string;
   private _content: string;
   private _isDone: boolean;
-  private _createdAt?: string;
-  private _updatedAt?: string;
+  private _createdAt?: Date;
+  private _updatedAt?: Date;
 
-  public constructor(title: string, content: string, isDone: boolean) {
-    this._title = title;
-    this._content = content;
-    this._isDone = isDone;
+  public constructor(
+    params: {
+      id?: number,
+      title: string,
+      content: string,
+      isDone: boolean,
+      createdAt?: Date,
+      updatedAt?: Date,
+    },
+  ) {
+    this._id = params.id;
+    this._title = params.title;
+    this._content = params.content;
+    this._isDone = params.isDone;
+    this._createdAt = params.createdAt;
+    this._updatedAt = params.updatedAt;
   }
 
   get id(): number | undefined {
@@ -44,19 +56,19 @@ export class TodoEntity {
     this._isDone = isDone;
   }
 
-  get createdAt(): string | undefined {
+  get createdAt(): Date | undefined {
     return this._createdAt;
   }
 
-  set createdAt(createdAt: string | undefined) {
+  set createdAt(createdAt: Date | undefined) {
     this._createdAt = createdAt;
   }
 
-  get updatedAt(): string | undefined {
+  get updatedAt(): Date | undefined {
     return this._updatedAt;
   }
 
-  set updatedAt(updatedAt: string | undefined) {
+  set updatedAt(updatedAt: Date | undefined) {
     this._updatedAt = updatedAt;
   }
 }
