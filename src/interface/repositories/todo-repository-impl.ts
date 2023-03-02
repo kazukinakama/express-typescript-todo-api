@@ -1,47 +1,57 @@
+import { PrismaClient, Todo } from "@prisma/client";
 import { TodoEntity } from '../../domain/entities/todo-entity';
 import { TodoRepository } from './todo-repository';
 
 export class TodoRepositoryImpl extends TodoRepository {
-  public async findAll(): Promise<TodoEntity[]> {
-    // TODO: DBから取得
-    const todo = new TodoEntity('title', 'content', false);
-    todo.id = 1;
-    todo.createdAt = new Date().toISOString();
-    todo.updatedAt = new Date().toISOString();
-    return [todo];
+  public constructor(private readonly prisma: PrismaClient) {
+    super();
   }
 
-  public async create(todo: TodoEntity): Promise<TodoEntity> {
-    // TODO: DBで作成
-    todo.id = 1;
-    todo.createdAt = new Date().toISOString();
-    todo.updatedAt = new Date().toISOString();
-    return todo;
+  public async findAll(): Promise<Todo[]> {
+    const data = await this.prisma.todo.findMany();
+    return data;
   }
 
-  public async findOneById(id: number): Promise<TodoEntity> {
-    // TODO: DBから取得
-    const todo = new TodoEntity('title', 'content', false);
-    todo.id = id;
-    todo.createdAt = new Date().toISOString();
-    todo.updatedAt = new Date().toISOString();
-    return todo;
+  public async create(todo: TodoEntity): Promise<Todo> {
+    const data = await this.prisma.todo.create({
+      data: {
+        title: todo.title,
+        content: todo.content,
+        isDone: todo.isDone,
+      },
+    });
+    return data;
   }
 
-  public async update(id: number, todo: TodoEntity): Promise<TodoEntity> {
-    // TODO: DBで更新
-    todo.id = id;
-    todo.createdAt = new Date().toISOString();
-    todo.updatedAt = new Date().toISOString();
-    return todo;
+  public async findOneById(id: number): Promise<Todo> {
+    const data = await this.prisma.todo.findUniqueOrThrow({
+      where: {
+        id: id,
+      },
+    })
+    return data;
   }
 
-  public async delete(id: number): Promise<TodoEntity> {
-    // TODO: DBで削除
-    const todo = new TodoEntity('title', 'content', false);
-    todo.id = id;
-    todo.createdAt = new Date().toISOString();
-    todo.updatedAt = new Date().toISOString();
-    return todo;
+  public async update(id: number, todo: TodoEntity): Promise<Todo> {
+    const data = await this.prisma.todo.update({
+      where: {
+        id: id,
+      },
+      data: {
+        title: todo.title,
+        content: todo.content,
+        isDone: todo.isDone,
+      },
+    });
+    return data;
+  }
+
+  public async delete(id: number): Promise<Todo> {
+    const data = await this.prisma.todo.delete({
+      where: {
+        id: id,
+      },
+    })
+    return data;
   }
 }
