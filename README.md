@@ -1,6 +1,4 @@
-# express-typescript-sample
-
-[![CI](https://github.com/kazukinakama/express-typescript-sample/actions/workflows/ci.yml/badge.svg)](https://github.com/kazukinakama/express-typescript-sample/actions/workflows/ci.yml)
+# express-typescript-todo-api
 
 ## start
 
