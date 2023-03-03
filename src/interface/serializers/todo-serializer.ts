@@ -2,7 +2,7 @@ import { TodoEntity } from '../../domain/entities/todo-entity';
 import { TodoResponse } from '../type';
 
 export class TodoSerializer {
-  serialize(entity: Required<TodoEntity>): TodoResponse {
+  serialize(entity: TodoEntity): TodoResponse {
     if (!entity.id) {
       throw new Error('the data is undefined');
     }

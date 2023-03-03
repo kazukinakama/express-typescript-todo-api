@@ -7,12 +7,12 @@ export class TodoRepositoryImpl extends TodoRepository {
     super();
   }
 
-  public async findAll(): Promise<Required<TodoEntity>[]> {
+  public async findAll(): Promise<TodoEntity[]> {
     const result = await this.prisma.todo.findMany();
     return result.map((item) => this.toEntity(item));
   }
 
-  public async create(todo: TodoEntity): Promise<Required<TodoEntity>> {
+  public async create(todo: TodoEntity): Promise<TodoEntity> {
     const result = await this.prisma.todo.create({
       data: {
         title: todo.title,
@@ -23,7 +23,7 @@ export class TodoRepositoryImpl extends TodoRepository {
     return this.toEntity(result);
   }
 
-  public async findOneById(id: number): Promise<Required<TodoEntity>> {
+  public async findOneById(id: number): Promise<TodoEntity> {
     const result = await this.prisma.todo.findUniqueOrThrow({
       where: {
         id: id,
@@ -32,7 +32,7 @@ export class TodoRepositoryImpl extends TodoRepository {
     return this.toEntity(result);
   }
 
-  public async update(id: number, todo: TodoEntity): Promise<Required<TodoEntity>> {
+  public async update(id: number, todo: TodoEntity): Promise<TodoEntity> {
     const result = await this.prisma.todo.update({
       where: {
         id: id,
@@ -46,7 +46,7 @@ export class TodoRepositoryImpl extends TodoRepository {
     return this.toEntity(result);
   }
 
-  public async delete(id: number): Promise<Required<TodoEntity>> {
+  public async delete(id: number): Promise<TodoEntity> {
     const result = await this.prisma.todo.delete({
       where: {
         id: id,
@@ -55,7 +55,7 @@ export class TodoRepositoryImpl extends TodoRepository {
     return this.toEntity(result);
   }
 
-  private toEntity(item: Todo): Required<TodoEntity> {
+  private toEntity(item: Todo): TodoEntity {
     const entity = new TodoEntity({
       id: item.id,
       title: item.title,
