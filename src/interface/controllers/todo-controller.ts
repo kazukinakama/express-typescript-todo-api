@@ -25,10 +25,7 @@ export class TodoController {
     return this.todoSerializer.serialize(result);
   }
 
-  public async update(
-    id: number,
-    requestBody: TodoRequest
-  ): Promise<TodoResponse> {
+  public async update(id: number, requestBody: TodoRequest): Promise<TodoResponse> {
     const todo = this.fromRequest(requestBody);
     const result = await this.todoUsecase.update(id, todo);
     return this.todoSerializer.serialize(result);

@@ -17,10 +17,7 @@ export const todoRouter = (): Router => {
   const todoRepository = new TodoRepositoryImpl(prisma);
   const todoSerializer = new TodoSerializer();
   const todoUsecase = new TodoUsecase(todoRepository);
-  const todoController: TodoController = new TodoController(
-    todoUsecase,
-    todoSerializer
-  );
+  const todoController: TodoController = new TodoController(todoUsecase, todoSerializer);
 
   router.get('/', async (req, res, next) => {
     try {
