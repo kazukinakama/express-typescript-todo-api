@@ -32,10 +32,10 @@ export class TodoRepositoryImpl extends TodoRepository {
     return this.toEntity(result);
   }
 
-  public async update(id: number, todo: TodoEntity): Promise<TodoEntity> {
+  public async update(todo: TodoEntity): Promise<TodoEntity> {
     const result = await this.prisma.todo.update({
       where: {
-        id: id,
+        id: todo.id,
       },
       data: {
         title: todo.title,

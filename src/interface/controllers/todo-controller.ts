@@ -15,7 +15,11 @@ export class TodoController {
   }
 
   public async create(requestBody: TodoRequest): Promise<TodoResponse> {
-    const todo = this.fromRequest(requestBody);
+    const todo = new TodoEntity({
+      title: requestBody.title,
+      content: requestBody.content,
+      isDone: requestBody.isDone,
+    });
     const result = await this.todoUsecase.create(todo);
     return this.todoSerializer.serialize(result);
   }
@@ -26,22 +30,18 @@ export class TodoController {
   }
 
   public async update(id: number, requestBody: TodoRequest): Promise<TodoResponse> {
-    const todo = this.fromRequest(requestBody);
-    const result = await this.todoUsecase.update(id, todo);
+    const todo = new TodoEntity({
+      id: id,
+      title: requestBody.title,
+      content: requestBody.content,
+      isDone: requestBody.isDone,
+    });
+    const result = await this.todoUsecase.update(todo);
     return this.todoSerializer.serialize(result);
   }
 
   public async delete(id: number): Promise<TodoResponse> {
     const result = await this.todoUsecase.delete(id);
     return this.todoSerializer.serialize(result);
-  }
-
-  private fromRequest(req: TodoRequest): TodoEntity {
-    const entity = new TodoEntity({
-      title: req.title,
-      content: req.content,
-      isDone: req.isDone,
-    });
-    return entity;
   }
 }

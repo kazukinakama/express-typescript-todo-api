@@ -16,8 +16,8 @@ export class TodoUsecase {
     return await this.todoRepository.findOneById(id);
   }
 
-  public async update(id: number, todo: TodoEntity): Promise<TodoEntity> {
-    return await this.todoRepository.update(id, todo);
+  public async update(todo: TodoEntity): Promise<TodoEntity> {
+    return await this.todoRepository.update(todo);
   }
 
   public async delete(id: number): Promise<TodoEntity> {
